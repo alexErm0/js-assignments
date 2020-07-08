@@ -281,7 +281,7 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(arr) {
-   var result = arr.map((x, index) => Array(index+1).fill(x)).flat();
+   return arr.map((x, idx) => new Array(idx+1).fill(x)).reduce((acc, val) => acc.concat(val), []);
    return result
 }
 
@@ -577,8 +577,8 @@ function group(array, keySelector, valueSelector) {
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
 function selectMany(arr, childrenSelector) {
-    var result = arr.map(childrenSelector).flat();
-	return result
+    arr = arr.map(x=>childrenSelector(x));
+    return arr.reduce((acc, val) => acc.concat(val), [])
 }
 
 
@@ -595,10 +595,8 @@ function selectMany(arr, childrenSelector) {
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
 function getElementByIndexes(arr, indexes) {
-    var ind = indexes.reduce((x, y) => {return x+y});
-	var res = arr.flat(indexes.length-1);
-	var result = res.filter((x, index) => index==ind);
-	return result
+    if (indexes.length == 1) return arr[indexes[0]];
+    else return getElementByIndexes(arr[indexes[0]], indexes.slice(1))
 }
 
 
