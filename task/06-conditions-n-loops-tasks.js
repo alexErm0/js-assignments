@@ -369,7 +369,7 @@ function isBracketsBalanced(str) {
 	for(let i = 0; i < 4; i++){
 		for(let j = 0; j < str.length-1; j++){
 			if(str[j]==massIn[i]){
-				if(massOut.includes(str[j+1])&& str[j+1]!=massOut[i]) return false
+				if(massOut[j+1]==str[j+1]&& str[j+1]!=massOut[i]) return false
 			}
 		}
 	}
