@@ -69,7 +69,7 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-    return value.substring(7, eval(value.length-1))
+    return value.substring(7, value.length-1)
 }
 
 
@@ -145,7 +145,7 @@ function removeFirstOccurrences(str, value) {
  *   '<a>' => 'a'
  */
 function unbracketTag(str) {
-    return str.substring(1, eval(str.length-1))
+    return str.substring(1, str.length-1)
 }
 
 
@@ -221,10 +221,10 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-  var input     = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-  var output    = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
-  var index     = x => input.indexOf(x);
-  var translate = x => index(x) > -1 ? output[index(x)] : x;
+  let input     = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  let output    = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  let index     = x => input.indexOf(x);
+  let translate = x => index(x) > -1 ? output[index(x)] : x;
   return str.split('').map(translate).join('');
 }
 

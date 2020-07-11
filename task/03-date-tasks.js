@@ -58,14 +58,12 @@ function parseDataFromIso8601(value) {
  *    Date(2015,1,1)    => false
  */
 function isLeapYear(date) {
-	if (date.getYear()%4!=0) {return false}
+	if (date.getYear()%4!=0) return false
 	else{
-		if (date.getYear()%100!=0){return true}
+		if (date.getYear()%100!=0)return true
 		else {
-			if (date.getYear()%400==0) {return false}
-			else{
-				return true
-			}
+			if (date.getYear()%400==0) return false
+			else return true
 		}					
 	}
 }
@@ -87,20 +85,20 @@ function isLeapYear(date) {
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
  */
 function timeSpanToString(startDate, endDate) {
-	var TS = Math.abs(startDate.getTime()-endDate.getTime());
-	 var ms = TS%1000;
+	let TS = Math.abs(startDate.getTime()-endDate.getTime());
+	 let ms = TS%1000;
 	  if (ms < 10) var msstr = '00' + ms; 
 	  else{
-		  if (ms<100) var msstr = '0' + ms ;
-		  else var msstr = ms;
+		  if (ms<100) msstr = '0' + ms ;
+		  else msstr = ms;
 	  }
-	var s = (TS - ms)/1000;
-	 var so = s%60;
-	  if (so>9) var sostr = so; else var sostr = '0'+so;
-	var m = (s - so)/60;
-	 var mo = m%60;
+	let s = (TS - ms)/1000;
+	 let so = s%60;
+	  if (so>9) var sostr = so; else sostr = '0'+so;
+	let m = (s - so)/60;
+	 let mo = m%60;
 	  if (mo>9) var mostr = mo; else mostr = '0'+mo;
-	var h = (m - mo)/60;
+	let h = (m - mo)/60;
 	if (h<=9) return ['0'+h, mostr, sostr].join(":") + "." + msstr 
 	else return [h, mostr, sostr].join(":") + "." + msstr
 }

@@ -560,8 +560,7 @@ function group(array, keySelector, valueSelector) {
         }
         return acc;
     }
-    var arr = Array.from(array);
-    return arr.reduce((acc, value) => func(acc, value), new Map());
+    return array.reduce((acc, value) => func(acc, value), new Map());
 }
 
 
