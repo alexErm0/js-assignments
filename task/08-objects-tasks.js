@@ -23,7 +23,11 @@
  *    console.log(r.getArea());   // => 200
  */
 function Rectangle(width, height) {
-    throw new Error('Not implemented');
+	this.width = width,
+	this.height = height,
+	Rectangle.prototype.getArea = function() {
+        return this.width * this.height
+    }
 }
 
 
@@ -38,7 +42,7 @@ function Rectangle(width, height) {
  *    { width: 10, height : 20 } => '{"height":10,"width":20}'
  */
 function getJSON(obj) {
-    throw new Error('Not implemented');
+	return JSON.stringify(obj)
 }
 
 
@@ -54,7 +58,7 @@ function getJSON(obj) {
  *
  */
 function fromJSON(proto, json) {
-    throw new Error('Not implemented');
+    return Object.setPrototypeOf(JSON.parse(json), proto)
 }
 
 
@@ -107,36 +111,101 @@ function fromJSON(proto, json) {
  */
 
 const cssSelectorBuilder = {
-
     element: function(value) {
-        throw new Error('Not implemented');
-    },
-
+		let current = new SuperElement();
+		return current.element(value);
+	},
     id: function(value) {
-        throw new Error('Not implemented');
-    },
-
+		let current = new SuperElement();
+		return current.id(value);
+	},
     class: function(value) {
-        throw new Error('Not implemented');
-    },
-
+		let current = new SuperElement();
+		return current.class(value);
+	},
     attr: function(value) {
-        throw new Error('Not implemented');
-    },
-
+		let current = new SuperElement();
+		return current.attr(value);
+	},
     pseudoClass: function(value) {
-        throw new Error('Not implemented');
-    },
-
+		let current = new SuperElement();
+		return current.pseudoClass(value);
+	},
     pseudoElement: function(value) {
-        throw new Error('Not implemented');
-    },
-
+		let current = new SuperElement();
+		return current.pseudoElement(value);
+	},
     combine: function(selector1, combinator, selector2) {
-        throw new Error('Not implemented');
-    },
+		let current = new SuperElement();
+		current.setValue(selector1.stringify()+" "+combinator+" "+selector2.stringify());
+		return current;
+	},
 };
 
+class SuperElement{
+	constructor(){
+		this.str = "";
+		this.flagOrder = "0";
+		this.flagRepeat = Array(3).fill(true);
+	}
+	setValue(val){
+		this.str = val;
+	}
+	element(strEl){
+		this.flagOrder += "1";
+		if(this.flagOrder[this.flagOrder.length-1]>this.flagOrder[this.flagOrder.length-2] && this.flagRepeat[0])this.str += strEl;
+		else {
+			if(this.flagOrder[this.flagOrder.length-1]<this.flagOrder[this.flagOrder.length-2]) throw new Error('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element')
+			else throw new Error('Element, id and pseudo-element should not occur more then one time inside the selector');
+		}
+		this.flagRepeat[0] = false;
+		return this;
+	}
+	id(strId){
+		this.flagOrder += "2";
+		if(this.flagOrder[this.flagOrder.length-1]>this.flagOrder[this.flagOrder.length-2] && this.flagRepeat[1])this.str +="#"+strId;
+		else {
+			if(this.flagOrder[this.flagOrder.length-1]<this.flagOrder[this.flagOrder.length-2]) throw new Error('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element')
+			else throw new Error('Element, id and pseudo-element should not occur more then one time inside the selector');
+		}
+		this.flagRepeat[1] = false;
+		return this;
+	}
+	class(strCl){
+		this.flagOrder += "3";
+		if(this.flagOrder[this.flagOrder.length-1]>=this.flagOrder[this.flagOrder.length-2])this.str +=`.${strCl}`;
+		else throw new Error('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element')
+		return this;
+	}
+	attr(strAt){
+		this.flagOrder += "4";
+		if(this.flagOrder[this.flagOrder.length-1]>=this.flagOrder[this.flagOrder.length-2])this.str +=`[${strAt}]`;
+		else throw new Error('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element')
+		return this;
+	}
+	pseudoClass(strPC){
+		this.flagOrder += "5";
+		if(this.flagOrder[this.flagOrder.length-1]>=this.flagOrder[this.flagOrder.length-2])this.str +=`:${strPC}`;
+		else throw new Error('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element')
+		return this;
+	}
+	pseudoElement(strPE){
+		this.flagOrder += "6";
+		if(this.flagRepeat[2])this.str +=`::${strPE}`;
+		else {
+			if(this.flagOrder[this.flagOrder.length-1]<this.flagOrder[this.flagOrder.length-2]) throw new Error('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element')
+			else throw new Error('Element, id and pseudo-element should not occur more then one time inside the selector');
+		}
+		this.flagRepeat[2] = false;
+		return this;
+	}
+	stringify(){
+		return this.str;
+	}
+	combine(){
+		return this;
+	}
+}
 
 module.exports = {
     Rectangle: Rectangle,
