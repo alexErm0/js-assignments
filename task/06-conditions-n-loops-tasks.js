@@ -143,7 +143,7 @@ function doRectanglesOverlap(rect1, rect2) {
 			else return false
 		}
 	}
-	var result = rect1.top < rect2.top ? compare(rect1, rect2): compare(rect2, rect1);
+	let result = rect1.top < rect2.top ? compare(rect1, rect2): compare(rect2, rect1);
 	return compare(rect1, rect2)
 }
 
@@ -175,7 +175,7 @@ function doRectanglesOverlap(rect1, rect2) {
  *   
  */
 function isInsideCircle(circle, point) {
-    var dirLine= Math.sqrt(Math.pow(circle.center.x-point.x, 2) + Math.pow(circle.center.y-point.y, 2));
+    let dirLine= Math.sqrt(Math.pow(circle.center.x-point.x, 2) + Math.pow(circle.center.y-point.y, 2));
 	if(dirLine>=circle.radius) return false
 	else return true
 }
@@ -194,7 +194,7 @@ function isInsideCircle(circle, point) {
  */
 function findFirstSingleChar(str) {
 	for(let i =0;i<str.length;i++){
-		var sum=0;
+		let sum=0;
 		for(let j =0;j<str.length;j++){
 			if(str[j].includes(str[i])) sum++
 		}
@@ -228,8 +228,8 @@ function findFirstSingleChar(str) {
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
 	if(a>b){var a1=b; var b1=a}
 	else {var a1=a; var b1=b}
-	var brOpen = "";
-	var brClose = "";
+	let brOpen = "";
+	let brClose = "";
 	isStartIncluded==true ? brOpen = "[": brOpen = "(";
 	isEndIncluded==true ? brClose = "]": brClose = ")";
     return brOpen+a1+", "+b1+brClose
@@ -249,7 +249,7 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * 'noon' => 'noon'
  */
 function reverseString(str) {
-	var STR = "";
+	let STR = "";
 	for(let i = 0; i<str.length; i++) STR += str[str.length-1-i]; 
 	return STR
 }
@@ -268,8 +268,8 @@ function reverseString(str) {
  *   34143 => 34143
  */
 function reverseInteger(num) {
-    var STR = 0;
-	var num1 = new String(num);
+    let STR = 0;
+	let num1 = new String(num);
 	for(let i = 1; i<=num1.length; i++) STR += Math.pow(10, num1.length-i)*(Math.floor(num/Math.pow(10, i-1))%10);
 	return STR
 }
@@ -296,8 +296,8 @@ function reverseInteger(num) {
  *   4916123456789012 => false
  */
 function isCreditCardNumber(ccn) {
-	var sum = 0;
-    var num = new String(ccn);
+	let sum = 0;
+    let num = new String(ccn);
     for (let i = 0; i < num.length; i++) {
         let card = parseInt(num[i]);
         if ((num.length - i) % 2 === 0) {
@@ -327,10 +327,10 @@ function isCreditCardNumber(ccn) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(num) {
-	var sum =num;
+	let sum =num;
     function func(num){
 		num = new String(num);
-		var result=0;
+		let result=0;
 		for(let i = 0; i < num.length; i++)result+=new Number(num[i]);
 		return result
 	}
@@ -361,11 +361,11 @@ function getDigitalRoot(num) {
  *   '{[(<{[]}>)]}' = true 
  */
 function isBracketsBalanced(str) {
-	var massIn = ["{", "[", "(", "<"];
-	var massOut = ["}", "]", ")", ">"];
+	let massIn = ["{", "[", "(", "<"];
+	let massOut = ["}", "]", ")", ">"];
 	if(str.length%2==1) return false
-	var sum = Array(4).fill(0);
-	var index = Array(4).fill(0);
+	let sum = Array(4).fill(0);
+	let index = Array(4).fill(0);
 	for(let i = 0; i < 4; i++){
 		for(let j = 0; j < str.length-1; j++){
 			if(str[j]==massIn[i]){
@@ -470,10 +470,10 @@ function timespanToHumanString(startDate, endDate) {
  *    365, 10 => '365'
  */
 function toNaryString(num, n) {
-	var str = "";
-	var a=1;
-	var index=0;
-	var con=0;
+	let str = "";
+	let a=1;
+	let index=0;
+	let con=0;
 	while(a<=num){
 		a*=n;
 		index++;
@@ -508,7 +508,7 @@ function toNaryString(num, n) {
  *   ['/web/favicon.ico', '/web-scripts/dump', '/webalizer/logs'] => '/'
  */
 function getCommonDirectoryPath(pathes) {
-	var Piece = "";
+	let Piece = "";
     for(let i = 0; i < pathes[0].length; i++){
 		var flag = "";
 		for(let j = 1; j < pathes.length; j++){
@@ -545,7 +545,7 @@ function getCommonDirectoryPath(pathes) {
  *
  */
 function getMatrixProduct(m1, m2) {
-	var m3 = new Array(m2[0].length);
+	let m3 = new Array(m2[0].length);
 	for(let i = 0; i < m2[0].length; i++){
 		m3[i] = new Array(m1.length);
 	}
@@ -593,11 +593,11 @@ function getMatrixProduct(m1, m2) {
  *
  */
 function evaluateTicTacToePosition(position) {
-	var b = "";
-	var a = "";
+	let b = "";
+	let a = "";
     for(let i = 0; i < position.length; i++){
-		var strLine = "";
-		var strFirst = "";
+		let strLine = "";
+		let strFirst = "";
 		for(let j = 0; j < position.length; j++){
 			if(position[j][i]=="0") strFirst +="0";
 			else if(position[j][i]=="X") strFirst +="X";
