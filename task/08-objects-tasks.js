@@ -154,20 +154,17 @@ class SuperElement{
 	element(strEl){
 		this.flagOrder += "1";
 		if(this.flagOrder[this.flagOrder.length-1]>this.flagOrder[this.flagOrder.length-2] && this.flagRepeat[0])this.str += strEl;
-		else {
-			if(this.flagOrder[this.flagOrder.length-1]<this.flagOrder[this.flagOrder.length-2]) throw new Error('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element')
+		else if(this.flagOrder[this.flagOrder.length-1]<this.flagOrder[this.flagOrder.length-2]) 
+			throw new Error('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element')
 			else throw new Error('Element, id and pseudo-element should not occur more then one time inside the selector');
-		}
 		this.flagRepeat[0] = false;
 		return this;
 	}
 	id(strId){
 		this.flagOrder += "2";
 		if(this.flagOrder[this.flagOrder.length-1]>this.flagOrder[this.flagOrder.length-2] && this.flagRepeat[1])this.str +="#"+strId;
-		else {
-			if(this.flagOrder[this.flagOrder.length-1]<this.flagOrder[this.flagOrder.length-2]) throw new Error('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element')
+		else if(this.flagOrder[this.flagOrder.length-1]<this.flagOrder[this.flagOrder.length-2]) throw new Error('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element')
 			else throw new Error('Element, id and pseudo-element should not occur more then one time inside the selector');
-		}
 		this.flagRepeat[1] = false;
 		return this;
 	}
@@ -192,10 +189,8 @@ class SuperElement{
 	pseudoElement(strPE){
 		this.flagOrder += "6";
 		if(this.flagRepeat[2])this.str +=`::${strPE}`;
-		else {
-			if(this.flagOrder[this.flagOrder.length-1]<this.flagOrder[this.flagOrder.length-2]) throw new Error('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element')
+		else if(this.flagOrder[this.flagOrder.length-1]<this.flagOrder[this.flagOrder.length-2]) throw new Error('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element')
 			else throw new Error('Element, id and pseudo-element should not occur more then one time inside the selector');
-		}
 		this.flagRepeat[2] = false;
 		return this;
 	}
