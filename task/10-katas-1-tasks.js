@@ -17,8 +17,55 @@
  *  ]
  */
 function createCompassPoints() {
-    throw new Error('Not implemented');
-    var sides = ['N','E','S','W'];  // use array of cardinal directions only!
+    let sides = ['N','E','S','W'];  // use array of cardinal directions only!
+	let azim = [];
+	for(let i=0; i< 32; i++){
+		let Element = {
+			abbreviation : "" ,
+			azimuth : 0
+		}
+		if(i<11 && i>5)Element.abbreviation = sides[1];
+		if(i<22 && i>10)Element.abbreviation = sides[2];
+		if(i<27 && i>21)Element.abbreviation = sides[3];
+		if(i<6 || i>26)Element.abbreviation = sides[0];
+		Element.azimuth = i*(360/32);
+		if(i%8==5 || i%8==3) {
+			if(i-16<0) Element.abbreviation += sides[1]
+			else Element.abbreviation += sides[3];
+		}
+		if((i+1)%8==3 || (i+1)%8==7) {
+			if(Math.abs(i-16)>8)Element.abbreviation+=sides[0]
+			else Element.abbreviation+=sides[2];
+			if(i-16>0)Element.abbreviation+=sides[3]
+			else Element.abbreviation+=sides[1];
+			/*Element.abbreviation+=sides[Math.floor((i+1)/8)];
+			if(Math.floor((i+1)/8)==3)Element.abbreviation+=sides[0]
+			else Element.abbreviation+=sides[Math.floor((i+1)/8)+1];*/
+		}
+		if(i%8==4) {
+			if(i-16<0) Element.abbreviation+=sides[1]
+			else Element.abbreviation+=sides[3];
+		}
+		if(i%8==1) {
+			Element.abbreviation += "b";
+			if(i>24)Element.abbreviation += sides[0];
+			else Element.abbreviation += sides[Math.ceil(i/8)];
+		}
+		if(i%8==3 || i%8==5) {
+			Element.abbreviation += "b";
+			if(i%8>4){
+				if(i>24)Element.abbreviation += sides[0]
+				else Element.abbreviation += sides[Math.ceil(i/8)];
+			}
+			else Element.abbreviation += sides[Math.floor(i/8)];
+		}
+		if(i%8==7) {
+			Element.abbreviation += "b";
+			Element.abbreviation += sides[Math.floor(i/8)];
+		}
+		azim.push(Element);
+	}
+	return azim
 }
 
 
