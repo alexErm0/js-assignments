@@ -135,10 +135,7 @@ function isTriangle(a,b,c) {
 function doRectanglesOverlap(rect1, rect2) {
 	function compare(rec1, rec2){
 		if (rec1.top + rec1.height>=rec2.top && rec1.left + rec1.width >= rec2.left) return true
-		else {
-			if(rec1.top + rec1.height>=rec2.top && rec1.left + rec1.width >= rec2.left+rec2.width)return true
-			return false
-		}
+		else return (rec1.top + rec1.height>=rec2.top && rec1.left + rec1.width >= rec2.left+rec2.width)
 	}
 	let result = rect1.top < rect2.top ? compare(rect1, rect2): compare(rect2, rect1);
 	return compare(rect1, rect2)
@@ -222,8 +219,14 @@ function findFirstSingleChar(str) {
  *
  */
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
-	if(a>b){var a1=b; var b1=a}
-	else {var a1=a; var b1=b}
+	if(a>b){
+		var a1=b;
+		var b1=a
+	}
+	else {
+		var a1=a;
+		var b1=b
+	}
 	let brOpen = "";
 	let brClose = "";
 	isStartIncluded==true ? brOpen = "[": brOpen = "(";
@@ -245,9 +248,9 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * 'noon' => 'noon'
  */
 function reverseString(str) {
-	let STR = "";
-	for(let i = 0; i<str.length; i++) STR += str[str.length-1-i]
-	return STR
+	let result = "";
+	for(let i = 0; i<str.length; i++) result += str[str.length-1-i]
+	return result
 }
 
 
@@ -327,7 +330,7 @@ function getDigitalRoot(num) {
 	function func(num){
 		num = new String(num);
 		let result=0;
-		for(let i = 0; i < num.length; i++)result+=new Number(num[i]);
+		for(let i = 0; i < num.length; i++) result +=new Number(num[i]);
 		return result
 	}
 	while(sum>9)sum = func(sum);
@@ -393,8 +396,7 @@ function isBracketsBalanced(str) {
 			}
 		}
 	}
-	if((sum[0]+sum[1]+sum[2]+sum[3])==0) return true
-	else return false
+	return ((sum[0]+sum[1]+sum[2]+sum[3])==0)
 }
 
 
@@ -430,7 +432,7 @@ function isBracketsBalanced(str) {
  *
  */
 function timespanToHumanString(startDate, endDate) {
-	let diffSec= Math.abs(endDate.getTime()-startDate.getTime());
+	let diffSec = Math.abs(endDate.getTime()-startDate.getTime());
 	if (diffSec<=1000*45) return "a few seconds ago"
 	if (diffSec<=1000*90) return "a minute ago"
 	if (diffSec<=1000*45*60) return Math.round((diffSec-1)/60/1000)+" minutes ago"
@@ -507,10 +509,9 @@ function getCommonDirectoryPath(pathes) {
 		var flag = "";
 		for(let j = 1; j < pathes.length; j++){
 			flag = true;
-			if(pathes[0].charAt(i)==pathes[j].charAt(i) && flag){flag = true}
-			else flag = false;
+			flag = (pathes[0].charAt(i)==pathes[j].charAt(i) && flag)
 		}
-		if(flag==true){
+		if(flag){
 			Piece += pathes[0].charAt(i);
 		}
 		else break
