@@ -111,31 +111,31 @@ function fromJSON(proto, json) {
  */
 
 const cssSelectorBuilder = {
-    element: function(value) {
+	element: function(value) {
 		let current = new SuperElement();
 		return current.element(value);
 	},
-    id: function(value) {
+	id: function(value) {
 		let current = new SuperElement();
 		return current.id(value);
 	},
-    class: function(value) {
+	class: function(value) {
 		let current = new SuperElement();
 		return current.class(value);
 	},
-    attr: function(value) {
+	attr: function(value) {
 		let current = new SuperElement();
 		return current.attr(value);
 	},
-    pseudoClass: function(value) {
+	pseudoClass: function(value) {
 		let current = new SuperElement();
 		return current.pseudoClass(value);
 	},
-    pseudoElement: function(value) {
+	pseudoElement: function(value) {
 		let current = new SuperElement();
 		return current.pseudoElement(value);
 	},
-    combine: function(selector1, combinator, selector2) {
+	combine: function(selector1, combinator, selector2) {
 		let current = new SuperElement();
 		current.setValue(selector1.stringify()+" "+combinator+" "+selector2.stringify());
 		return current;
