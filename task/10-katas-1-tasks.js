@@ -103,7 +103,27 @@ function createCompassPoints() {
  *   'nothing to do' => 'nothing to do'
  */
 function* expandBraces(str) {
-    throw new Error('Not implemented');
+	/*let arrText = Array.from(str);
+	let result = [];
+	let count = 0;
+	for(let i=0; i<arrText.length; i++){
+		if(arrText[i]=='{'){
+			count++;
+			for(let j=i; j<arrText.length; j++){
+				if(arrText[j]=='}' && count==1) {
+					result.push(arrText.prototype.slice(i+1, j));
+					break;
+				}
+				if(arrText[j]=='}' && count>1) count--
+				if(arrText[j]=='{') {
+					count++;
+					i=j;
+				}
+			}
+		}
+	}
+	yield result;*/
+	throw new Error('Not implemented');
 }
 
 
