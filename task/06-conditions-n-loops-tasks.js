@@ -402,7 +402,7 @@ function isBracketsBalanced(str) {
                 if(str[j] === massOut[i])sum[i] -= 1;
             }			
         }
-        if (sum[i] != 0) return false
+        if (sum[i] !== 0) return false
     }
     for(let i = 0; i < 4; i++){
         for(let j = 0; j < str.length - 1; j++){
@@ -514,7 +514,7 @@ function toNaryString(num, n) {
             }
             str += con;
             con = 0;
-    	}
+        }
     }
     return str
 }
