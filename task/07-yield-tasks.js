@@ -33,15 +33,15 @@
  *
  */
 function* get99BottlesOfBeer() {
-	for(let i=99; i>1; i--){
-		yield i+" bottles of beer on the wall, "+i+" bottles of beer.";
-		if(i!=2) yield 'Take one down and pass it around, '+(i-1)+' bottles of beer on the wall.';
-	}
-	yield 'Take one down and pass it around, 1 bottle of beer on the wall.';
-	yield '1 bottle of beer on the wall, 1 bottle of beer.';
-	yield 'Take one down and pass it around, no more bottles of beer on the wall.';
-	yield 'No more bottles of beer on the wall, no more bottles of beer.';
-	yield 'Go to the store and buy some more, 99 bottles of beer on the wall.';
+    for(let i = 99; i > 1; i--){
+        yield i + " bottles of beer on the wall, " + i + " bottles of beer.";
+        if(i != 2) yield 'Take one down and pass it around, ' + (i - 1) + ' bottles of beer on the wall.';
+    }
+    yield 'Take one down and pass it around, 1 bottle of beer on the wall.';
+    yield '1 bottle of beer on the wall, 1 bottle of beer.';
+    yield 'Take one down and pass it around, no more bottles of beer on the wall.';
+    yield 'No more bottles of beer on the wall, no more bottles of beer.';
+    yield 'Go to the store and buy some more, 99 bottles of beer on the wall.';
 }
 
 
@@ -55,15 +55,15 @@ function* get99BottlesOfBeer() {
  *
  */
 function* getFibonacciSequence() {
-	let past1 = 0;
-	let past2 = 1;
-	let num = past1;
-	while(true){
-		past1=past2;
-		past2=num;
-		yield num;
-		num=past1+past2;
-	}
+    let past1 = 0;
+    let past2 = 1;
+    let num = past1;
+    while(true){
+        past1 = past2;
+        past2 = num;
+        yield num;
+        num = past1 + past2;
+    }
 }
 
 
@@ -98,14 +98,14 @@ function* getFibonacciSequence() {
  *
  */
 function* depthTraversalTree(root) {
-	var cash = [root];
-	while (cash.length) {
-		root = cash.pop();
-		yield root;
-		if(root.children){
-			for(let i of root.children.reverse()) cash.push(i);			
-		}
-	}
+    let cash = [root];
+    while (cash.length) {
+        root = cash.pop();
+        yield root;
+        if(root.children){
+            for(let i of root.children.reverse()) cash.push(i);			
+        }
+    }
 }
 
 
@@ -131,16 +131,16 @@ function* depthTraversalTree(root) {
  *
  */
 function* breadthTraversalTree(root) {
-	var cash = [root];
-	var flag = 0;
-	while (flag<cash.length) {
-		root = cash[flag];
-		yield root;
-		if(root.children){
-			for(let i of root.children) cash.push(i);
-		}
-		flag++;
-	}
+    let cash = [root];
+    let flag = 0;
+    while (flag < cash.length) {
+        root = cash[flag];
+        yield root;
+        if(root.children){
+            for(let i of root.children) cash.push(i);
+        }
+        flag++;
+    }
 }
 
 
@@ -158,22 +158,22 @@ function* breadthTraversalTree(root) {
  *   [ 1, 3, 5, ... ], [ -1 ] => [ -1, 1, 3, 5, ...]
  */
 function* mergeSortedSequences(source1, source2) {
-	let start1 = source1();
-	let start2 = source2();
-	let mass1 = start1.next()
-	let mass2 = start2.next()
-	while(!mass1.done || !mass2.done){
-		if(mass1.value > mass2.value){
-			if(mass2.value != undefined)yield mass2.value
-			if(mass1.value != undefined)yield mass1.value
-		}
-		else{
-			if(mass1.value != undefined)yield mass1.value
-			if(mass2.value != undefined)yield mass2.value
-		}
-		mass1 = start1.next()
-		mass2 = start2.next()
-	}
+    let start1 = source1();
+    let start2 = source2();
+    let mass1 = start1.next()
+    let mass2 = start2.next()
+    while(!mass1.done || !mass2.done){
+        if(mass1.value > mass2.value){
+            if(mass2.value != undefined) yield mass2.value
+            if(mass1.value != undefined) yield mass1.value
+        }
+        else{
+            if(mass1.value != undefined) yield mass1.value
+            if(mass2.value != undefined) yield mass2.value
+        }
+        mass1 = start1.next()
+        mass2 = start2.next()
+    }
 }
 
 /**
@@ -192,22 +192,22 @@ function* mergeSortedSequences(source1, source2) {
  *   Most popular implementation of the logic in npm https://www.npmjs.com/package/co
  */
 function async(generator) {
-	let prom = generator();
-	let task = prom.next();
-	return task.value.then(() => {
-		let promise = Array();
-		try{
-			promise.push(task.value)
-			while(true) promise.push(prom.next().value)
-		}
-		finally{
-			return Promise.all(promise).then(x => {
-				return x.reduce((accumulator, init) => {
-					return accumulator + init
-				}, 0)
-			})
-		}
-	})
+    let prom = generator();
+    let task = prom.next();
+    return task.value.then(() => {
+        let promise = Array();
+        try{
+            promise.push(task.value)
+            while(true) promise.push(prom.next().value)
+        }
+        finally{
+            return Promise.all(promise).then(x => {
+                return x.reduce((accumulator, init) => {
+                    return accumulator + init
+                }, 0)
+            })
+        }
+    })
 }
 
 
