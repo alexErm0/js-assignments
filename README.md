@@ -22,7 +22,9 @@ To start javascript assignments please follow the next steps:
 ### How to setup travis-ci
 * Open [https://travis-ci.org/](https://travis-ci.org/) and sign in with your github account.
 * Activate your forked repo **js-assignments**.
-* Edit local README.md file and update all links (just replace all occurrences of `'alexErm0'` with your account name).
+
+* Edit local README.md file and update all links (just replace all occurrences of `'AisBrestEDU' or 'rolling-scopes-school'` with your account name).
+>>>>>>> 70a32aca54279d21dd74b122a8b960203876b705
 * Commit and push updated README.md to github:
 ```bash
   git add README.md
@@ -110,4 +112,3 @@ There is an easier way to debug for beginners with free Visual Studio Code:
 
 ##Contribution
 Feel free to contribute into this project. New tasks and katas are welcome.
-
