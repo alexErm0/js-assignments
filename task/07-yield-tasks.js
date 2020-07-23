@@ -166,12 +166,12 @@ function* mergeSortedSequences(source1, source2) {
     let mass2 = start2.next();
     while(!mass1.done || !mass2.done){
         if(mass1.value > mass2.value){
-            if(mass2.value != undefined) yield mass2.value;
-            if(mass1.value != undefined) yield mass1.value;
+            if(mass2.value !== undefined) yield mass2.value;
+            if(mass1.value !== undefined) yield mass1.value;
         }
         else{
-            if(mass1.value != undefined) yield mass1.value;
-            if(mass2.value != undefined) yield mass2.value;
+            if(mass1.value !== undefined) yield mass1.value;
+            if(mass2.value !== undefined) yield mass2.value;
         }
         mass1 = start1.next();
         mass2 = start2.next();
@@ -196,11 +196,12 @@ function* mergeSortedSequences(source1, source2) {
 function async(generator) {
     let prom = generator();
     let task = prom.next();
+    let i = true;
     return task.value.then(() => {
         let promise = Array();
         try{
             promise.push(task.value)
-            while(true) promise.push(prom.next().value)
+            while(i) promise.push(prom.next().value)
         }
         finally{
             return Promise.all(promise).then(x => {
