@@ -111,7 +111,7 @@ function retry(func, attempts) {
             try{
                 return func();
             }
-        catch(e){}
+        catch(e)
         }
     return func();
     }
@@ -169,7 +169,6 @@ function partialUsingArguments(fn) {
     let args = Array.from(arguments).slice(1);
     return function(){
         let Arg = args.concat(Array.from(arguments));
-        console.log(fn.apply(Arg));
         return fn.apply(null, Arg)
     }
 }
