@@ -31,9 +31,9 @@
  */
 function getFizzBuzz(num) {
     if(num % 3 != 0 && num % 5 != 0) return num
-    if(num % 3 == 0 && num %5 == 0) return "FizzBuzz"
+    if(num % 3 == 0 && num % 5 == 0) return "FizzBuzz"
     if(num % 5 == 0) return "Buzz"
-    return "Fizz"		
+    return "Fizz"
 }
 
 
@@ -73,8 +73,10 @@ function getFactorial(n) {
  */
 function getSumBetweenNumbers(n1, n2) {
     let sum = 0;
-    for(let i = n1; i <= n2; i++) sum += i;
-    return sum
+    for(let i = n1; i <= n2; i++) {
+        sum += i;
+    }
+    return sum;
 }
 
 
@@ -229,16 +231,16 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
     let b1 = 0;
     if(a > b){
         a1 = b;
-        b1 = a
+        b1 = a;
     }
     else {
         a1 = a;
-        b1 = b
+        b1 = b;
     }
     let brOpen = "";
     let brClose = "";
-    isStartIncluded == true ? brOpen = "[": brOpen = "(";
-    isEndIncluded == true ? brClose = "]": brClose = ")";
+    isStartIncluded == true ? brOpen = "[" : brOpen = "(";
+    isEndIncluded == true ? brClose = "]" : brClose = ")";
     return brOpen + a1 + ", " + b1 + brClose
 }
 
@@ -257,7 +259,9 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  */
 function reverseString(str) {
     let result = "";
-    for(let i = 0; i < str.length; i++) result += str[str.length - 1 - i]
+    for(let i = 0; i < str.length; i++){
+        result += str[str.length - 1 - i];
+    }
     return result
 }
 
@@ -378,8 +382,8 @@ function isBracketsBalanced(str) {
     for(let i = 0; i < 4; i++){
         for(let j = 0; j < str.length - 1; j++){
             if(str[j] == massIn[i]){
-                if(massOut[j + 1] == str[j + 1]&& str[j + 1] != massOut[i]){
-                return false
+                if(massOut[j + 1] == str[j + 1] && str[j + 1] != massOut[i]){
+                    return false
                 }
             }
         }
@@ -388,7 +392,7 @@ function isBracketsBalanced(str) {
         for(let j = 0; j < str.length; j++){
             if(str[j] == massIn[i]){
                 sum[i] += 1;
-                if(sum[i] == 1)index[i] = j;
+                if(sum[i] == 1) index[i] = j;
             }
         }
     }
@@ -448,24 +452,24 @@ function isBracketsBalanced(str) {
  */
 function timespanToHumanString(startDate, endDate) {
     let diffSec = Math.abs(endDate.getTime() - startDate.getTime());
-    if (diffSec <= 1000 * 45)return "a few seconds ago"
-    if (diffSec <= 1000 * 90)return "a minute ago"
+    if (diffSec <= 1000 * 45) return "a few seconds ago"
+    if (diffSec <= 1000 * 90) return "a minute ago"
     if (diffSec <= 1000 * 45 * 60){
         return Math.round((diffSec - 1) / 60 / 1000) + " minutes ago"
     }
-    if (diffSec <= 1000 * 90 * 60)return "an hour ago"
+    if (diffSec <= 1000 * 90 * 60) return "an hour ago"
     if (diffSec <= 1000 * 22 * 3600){
         return Math.round((diffSec - 1) / 3600 / 1000) + " hours ago"
     }
-    if (diffSec <= 1000 * 36 * 3600)return "a day ago"
+    if (diffSec <= 1000 * 36 * 3600) return "a day ago"
     if (diffSec <= 1000 * 25 * 24 * 3600){
         return Math.round((diffSec - 1) / 24 / 3600 / 1000) + " days ago"
     }
-    if (diffSec <= 1000 * 45 * 24 * 3600)return "a month ago"
+    if (diffSec <= 1000 * 45 * 24 * 3600) return "a month ago"
     if (diffSec <= 1000 * 345* 24 * 3600){
         return Math.round((diffSec - 1) / 30 / 24 / 3600 / 1000) + " months ago"
     }
-    if (diffSec <= 1000 * 545* 24 * 3600)return "a year ago"
+    if (diffSec <= 1000 * 545* 24 * 3600) return "a year ago"
     if (diffSec > 1000 * 545 * 24 * 3600){
         return Math.round((diffSec - 1) / 12 / 30 / 24 / 3600 / 1000) + " years ago"
     }
@@ -534,7 +538,7 @@ function getCommonDirectoryPath(pathes) {
         var flag = "";
         for(let j = 1; j < pathes.length; j++){
             flag = true;
-            flag = (pathes[0].charAt(i)==pathes[j].charAt(i) && flag)
+            flag = (pathes[0].charAt(i) == pathes[j].charAt(i) && flag)
         }
         if(flag){
             Piece += pathes[0].charAt(i);
