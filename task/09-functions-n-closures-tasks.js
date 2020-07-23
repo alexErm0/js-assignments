@@ -112,6 +112,7 @@ function retry(func, attempts) {
                 return func();
             }
             catch(e){
+                continue;
             }
         }
     return func();
