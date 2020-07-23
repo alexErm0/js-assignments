@@ -137,7 +137,9 @@ function* breadthTraversalTree(root) {
         root = cash[flag];
         yield root;
         if(root.children){
-            for(let i of root.children) cash.push(i);
+            for(let i of root.children){
+                cash.push(i);
+            }
         }
         flag++;
     }
@@ -160,19 +162,19 @@ function* breadthTraversalTree(root) {
 function* mergeSortedSequences(source1, source2) {
     let start1 = source1();
     let start2 = source2();
-    let mass1 = start1.next()
-    let mass2 = start2.next()
+    let mass1 = start1.next();
+    let mass2 = start2.next();
     while(!mass1.done || !mass2.done){
         if(mass1.value > mass2.value){
-            if(mass2.value != undefined) yield mass2.value
-            if(mass1.value != undefined) yield mass1.value
+            if(mass2.value != undefined) yield mass2.value;
+            if(mass1.value != undefined) yield mass1.value;
         }
         else{
-            if(mass1.value != undefined) yield mass1.value
-            if(mass2.value != undefined) yield mass2.value
+            if(mass1.value != undefined) yield mass1.value;
+            if(mass2.value != undefined) yield mass2.value;
         }
-        mass1 = start1.next()
-        mass2 = start2.next()
+        mass1 = start1.next();
+        mass2 = start2.next();
     }
 }
 
