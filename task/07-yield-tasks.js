@@ -203,14 +203,16 @@ function async(generator) {
             promise.push(task.value)
             while(i) promise.push(prom.next().value)
         }
-        finally{
-            continue;
+        catch(e){
+            i = false;
         }
-        return Promise.all(promise).then(x => {
-            return x.reduce((accumulator, init) => {
-                return accumulator + init
-            }, 0)
-        })
+        finally{
+            return Promise.all(promise).then(x => {
+                return x.reduce((accumulator, init) => {
+                    return accumulator + init
+                }, 0)
+            })
+        }
     })
 }
 
