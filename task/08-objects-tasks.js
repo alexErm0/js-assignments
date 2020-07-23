@@ -154,9 +154,9 @@ class SuperElement{
     element(strEl){
         this.flagOrder += "1";
         if(
-	    this.flagOrder[this.flagOrder.length - 1] > this.flagOrder[this.flagOrder.length - 2] &&
+            this.flagOrder[this.flagOrder.length - 1] > this.flagOrder[this.flagOrder.length - 2] &&
             this.flagRepeat[0]
-	) this.str += strEl;
+        ) this.str += strEl;
         else if(this.flagOrder[this.flagOrder.length - 1] < this.flagOrder[this.flagOrder.length - 2]){
                 throw new Error(
                     'Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element'
