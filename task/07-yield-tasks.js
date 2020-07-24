@@ -33,9 +33,9 @@
  *
  */
 function* get99BottlesOfBeer() {
-    for(let i = 99; i > 1; i--){
+    for (let i = 99; i > 1; i--) {
         yield i + " bottles of beer on the wall, " + i + " bottles of beer.";
-        if(i !== 2) yield 'Take one down and pass it around, ' + (i - 1) + ' bottles of beer on the wall.';
+        if (i !== 2) yield 'Take one down and pass it around, ' + (i - 1) + ' bottles of beer on the wall.';
     }
     yield 'Take one down and pass it around, 1 bottle of beer on the wall.';
     yield '1 bottle of beer on the wall, 1 bottle of beer.';
@@ -58,7 +58,7 @@ function* getFibonacciSequence() {
     let past1 = 0;
     let past2 = 1;
     let num = past1;
-    while(true){
+    while (true) {
         past1 = past2;
         past2 = num;
         yield num;
@@ -102,8 +102,8 @@ function* depthTraversalTree(root) {
     while (cash.length) {
         root = cash.pop();
         yield root;
-        if(root.children){
-            for(let i of root.children.reverse()) cash.push(i);			
+        if (root.children) {
+            for (let i of root.children.reverse()) cash.push(i);			
         }
     }
 }
@@ -136,8 +136,8 @@ function* breadthTraversalTree(root) {
     while (flag < cash.length) {
         root = cash[flag];
         yield root;
-        if(root.children){
-            for(let i of root.children){
+        if (root.children) {
+            for (let i of root.children) {
                 cash.push(i);
             }
         }
@@ -164,14 +164,13 @@ function* mergeSortedSequences(source1, source2) {
     let start2 = source2();
     let mass1 = start1.next();
     let mass2 = start2.next();
-    while(!mass1.done || !mass2.done){
-        if(mass1.value > mass2.value){
-            if(mass2.value !== undefined) yield mass2.value;
-            if(mass1.value !== undefined) yield mass1.value;
-        }
-        else{
-            if(mass1.value !== undefined) yield mass1.value;
-            if(mass2.value !== undefined) yield mass2.value;
+    while (!mass1.done || !mass2.done) {
+        if (mass1.value > mass2.value) {
+            if (mass2.value !== undefined) yield mass2.value;
+            if (mass1.value !== undefined) yield mass1.value;
+        } else {
+            if (mass1.value !== undefined) yield mass1.value;
+            if (mass2.value !== undefined) yield mass2.value;
         }
         mass1 = start1.next();
         mass2 = start2.next();
@@ -194,15 +193,15 @@ function* mergeSortedSequences(source1, source2) {
  *   Most popular implementation of the logic in npm https://www.npmjs.com/package/co
  */
 function async(generator) {
-    let gen = generator()
-    return resolved(gen.next())
+    let gen = generator();
+    return resolved( gen.next() );
     function resolved(value) {
         if (value.done) {
-            return Promise.resolve(value.value)
+            return Promise.resolve( value.value );
         }
-        return Promise.resolve(value.value).then((response) => {
-            return resolved(gen.next(response))
-        })
+        return Promise.resolve( value.value ).then((response) => {
+            return resolved( gen.next(response) );
+        });
     }
 }
 
