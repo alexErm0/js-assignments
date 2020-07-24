@@ -25,8 +25,8 @@
  *   getComposition(Math.sin, Math.asin)(x) => Math.sin(Math.acos(x))
  *
  */
-function getComposition(f,g) {
-    return (x) => f(g(x))
+function getComposition(f, g) {
+    return (x) => f(g(x));
 }
 
 
@@ -47,7 +47,7 @@ function getComposition(f,g) {
  *
  */
 function getPowerFunction(exponent) {
-    return x => Math.pow(x, exponent)
+    return x => Math.pow(x, exponent);
 }
 
 
@@ -66,7 +66,7 @@ function getPowerFunction(exponent) {
  */
 function getPolynom() {
     let args = Array.from(arguments).reverse();
-    return x => args.reduce((acc, cv, index) => acc + cv * Math.pow(x ,index))
+    return x => args.reduce( (acc, cv, index) => acc + cv * Math.pow(x ,index) );
 }
 
 
@@ -86,7 +86,7 @@ function getPolynom() {
  */
 function memoize(func) {
     let acc = func();
-    return x => acc
+    return x => acc;
 }
 
 
@@ -107,16 +107,16 @@ function memoize(func) {
  */
 function retry(func, attempts) {
     return () => {
-        for(let i = 0; i < attempts; i++){
-            try{
+        for (let i = 0; i < attempts; i++) {
+            try {
                 return func();
             }
-            catch(e){
+            catch(e) {
                 continue;
             }
         }
     return func();
-    }
+    };
 }
 
 
@@ -144,13 +144,13 @@ function retry(func, attempts) {
  *
  */
 function logger(func, logFunc) {
-    return function(){
+    return function () {
         let strValue = JSON.stringify(Array.from(arguments)).slice(1, -1);
         logFunc(`${func.name}(${strValue}) starts`);
         let result = func.apply(null, arguments);
         logFunc(`${func.name}(${strValue}) ends`);
-        return result
-    }
+        return result;
+    };
 }
 
 
@@ -169,10 +169,10 @@ function logger(func, logFunc) {
  */
 function partialUsingArguments(fn) {
     let args = Array.from(arguments).slice(1);
-    return function(){
-        let Arg = args.concat(Array.from(arguments));
-        return fn.apply(null, Arg)
-    }
+    return function () {
+        let Arg = args.concat( Array.from(arguments) );
+        return fn.apply(null, Arg);
+    };
 }
 
 
@@ -193,7 +193,7 @@ function partialUsingArguments(fn) {
  *   getId10() => 11
  */
 function getIdGeneratorFunction(startFrom) {
-    return () => startFrom++
+    return () => startFrom++;
 }
 
 
