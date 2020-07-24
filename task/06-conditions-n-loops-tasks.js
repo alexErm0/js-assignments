@@ -232,8 +232,7 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
     if (a > b) {
         a1 = b;
         b1 = a;
-    }
-    else {
+    } else {
         a1 = a;
         b1 = b;
     }
@@ -508,8 +507,9 @@ function toNaryString(num, n) {
     }
     for (let i = 0; i < index; i++) {
         a = a / n;
-        if (num < a && i !== 0) str += "0"
-        else {
+        if (num < a && i !== 0) {
+            str += "0";
+	} else {
             while (num >= a) {
                 con++;
                 num -= a;
@@ -545,8 +545,7 @@ function getCommonDirectoryPath(pathes) {
         }
         if (flag) {
             Piece += pathes[0].charAt(i);
-        }
-        else break;
+        } else break;
     }
     if (Piece.endsWith("/") !== true) {
         Piece = Piece.slice(0, Piece.lastIndexOf("/") + 1);
