@@ -30,9 +30,15 @@
  *
  */
 function getFizzBuzz(num) {
-    if (num % 3 !== 0 && num % 5 !== 0) return num;
-    if (num % 3 === 0 && num % 5 === 0) return "FizzBuzz";
-    if (num % 5 === 0) return "Buzz";
+    if (num % 3 !== 0 && num % 5 !== 0) {
+        return num;
+    }
+    if (num % 3 === 0 && num % 5 === 0) {
+        return "FizzBuzz";
+    }
+    if (num % 5 === 0) {
+        return "Buzz";
+    }
     return "Fizz";
 }
 
@@ -95,9 +101,15 @@ function getSumBetweenNumbers(n1, n2) {
  *   10,10,10 =>  true
  */
 function isTriangle(a, b, c) {
-    if (a + b <= c) return false;
-    if (c + b <= a) return false;
-    if (a + c <= b) return false;
+    if (a + b <= c) {
+        return false;
+    }
+    if (c + b <= a) {
+        return false;
+    }
+    if (a + c <= b) {
+        return false;
+    }
     return true;
 }
 
@@ -136,14 +148,16 @@ function isTriangle(a, b, c) {
  */
 function doRectanglesOverlap(rect1, rect2) {
     function compare(rec1, rec2) {
-       if (
+        if (
             rec1.top + rec1.height >= rec2.top &&
             rec1.left + rec1.width >= rec2.left
-        ) return true;
+        ) {
+            return true;
+        }
         return (
             rec1.top + rec1.height >= rec2.top &&
             rec1.left + rec1.width >= rec2.left + rec2.width
-        );
+        )
     }
     let result = rect1.top < rect2.top ? compare(rect1, rect2): compare(rect2, rect1);
     return compare(rect1, rect2);
@@ -197,10 +211,14 @@ function findFirstSingleChar(str) {
     for (let i = 0; i < str.length; i++) {
         let sum = 0;
         for (let j = 0; j < str.length; j++) {
-            if (str[j].includes(str[i])) sum++;
+            if (str[j].includes(str[i])) {
+                sum++;
+	    }
         }
-        if (sum === 1) return str[i];
-   }
+        if (sum === 1) {
+            return str[i];
+        }
+    }
     return null;
 }
 
@@ -343,10 +361,14 @@ function getDigitalRoot(num) {
     function func(num) {
         num = new String(num);
         let result = 0;
-        for (let i = 0; i < num.length; i++) result += new Number(num[i]);
+        for (let i = 0; i < num.length; i++) {
+            result += new Number(num[i]);
+        }
         return result;
     }
-    while (sum > 9) sum = func(sum);
+    while (sum > 9) {
+        sum = func(sum);
+    }
     return sum;
 }
 
@@ -393,17 +415,23 @@ function isBracketsBalanced(str) {
         for (let j = 0; j < str.length; j++) {
             if (str[j] === massIn[i]) {
                 sum[i] += 1;
-                if (sum[i] === 1) index[i] = j;
+                if (sum[i] === 1) {
+                    index[i] = j;
+                }
             }
         }
     }
     for (let i = 0; i < 4; i++) {
         for (let j = index[i] + 1; j < str.length; j++) {
             if (sum[i] !== 0) {
-                if (str[j] === massOut[i]) sum[i] -= 1;
+                if (str[j] === massOut[i]) {
+                    sum[i] -= 1;
+                }
             }			
         }
-        if (sum[i] !== 0) return false;
+        if (sum[i] !== 0) {
+            return false;
+        }
     }
     for (let i = 0; i < 4; i++) {
         for (let j = 0; j < str.length - 1; j++) {
@@ -453,24 +481,36 @@ function isBracketsBalanced(str) {
  */
 function timespanToHumanString(startDate, endDate) {
     let diffSec = Math.abs(endDate.getTime() - startDate.getTime());
-    if (diffSec <= 1000 * 45) return "a few seconds ago";
-    if (diffSec <= 1000 * 90) return "a minute ago";
+    if (diffSec <= 1000 * 45) {
+        return "a few seconds ago";
+    }
+    if (diffSec <= 1000 * 90) {
+        return "a minute ago";
+    }
     if (diffSec <= 1000 * 45 * 60) {
         return Math.round((diffSec - 1) / 60 / 1000) + " minutes ago";
     }
-    if (diffSec <= 1000 * 90 * 60) return "an hour ago";
+    if (diffSec <= 1000 * 90 * 60) {
+        return "an hour ago";
+    }
     if (diffSec <= 1000 * 22 * 3600) {
         return Math.round((diffSec - 1) / 3600 / 1000) + " hours ago";
     }
-    if (diffSec <= 1000 * 36 * 3600) return "a day ago";
+    if (diffSec <= 1000 * 36 * 3600) {
+        return "a day ago";
+    }
     if (diffSec <= 1000 * 25 * 24 * 3600) {
         return Math.round((diffSec - 1) / 24 / 3600 / 1000) + " days ago";
     }
-    if (diffSec <= 1000 * 45 * 24 * 3600) return "a month ago";
+    if (diffSec <= 1000 * 45 * 24 * 3600) {
+        return "a month ago";
+    }
     if (diffSec <= 1000 * 345* 24 * 3600) {
         return Math.round((diffSec - 1) / 30 / 24 / 3600 / 1000) + " months ago";
     }
-    if (diffSec <= 1000 * 545* 24 * 3600) return "a year ago";
+    if (diffSec <= 1000 * 545* 24 * 3600) {
+        return "a year ago";
+    }
     if (diffSec > 1000 * 545 * 24 * 3600) {
         return Math.round((diffSec - 1) / 12 / 30 / 24 / 3600 / 1000) + " years ago";
     }
@@ -509,7 +549,7 @@ function toNaryString(num, n) {
         a = a / n;
         if (num < a && i !== 0) {
             str += "0";
-	} else {
+        } else {
             while (num >= a) {
                 con++;
                 num -= a;
@@ -535,7 +575,7 @@ function toNaryString(num, n) {
  *   ['/web/favicon.ico', '/web-scripts/dump', '/webalizer/logs'] => '/'
  */
 function getCommonDirectoryPath(pathes) {
-    let Piece = "";
+    let piece = "";
     let flag = "";
     for (let i = 0; i < pathes[0].length; i++) {
         flag = "";
@@ -544,13 +584,15 @@ function getCommonDirectoryPath(pathes) {
             flag = (pathes[0].charAt(i) === pathes[j].charAt(i) && flag);
         }
         if (flag) {
-            Piece += pathes[0].charAt(i);
-        } else break;
+            piece += pathes[0].charAt(i);
+        } else {
+            break;
+        }
     }
-    if (Piece.endsWith("/") !== true) {
-        Piece = Piece.slice(0, Piece.lastIndexOf("/") + 1);
+    if (piece.endsWith("/") !== true) {
+        piece = piece.slice(0, piece.lastIndexOf("/") + 1);
     }
-    return Piece;
+    return piece;
 }
 
 
@@ -627,29 +669,51 @@ function evaluateTicTacToePosition(position) {
         let strLine = "";
         let strFirst = "";
         for (let j = 0; j < position.length; j++) {
-            if (position[j][i] === "0") strFirst += "0";
-            else if (position[j][i] === "X") strFirst += "X";
+            if (position[j][i] === "0") {
+                strFirst += "0";
+            } else if (position[j][i] === "X") {
+                strFirst += "X";
+            }
 
-            if (position[i][j] === "0") strLine += "0";
-            else if (position[i][j] === "X") strLine += "X";
+            if (position[i][j] === "0") {
+                strLine += "0";
+            } else if (position[i][j] === "X") {
+                strLine += "X";
+            }
         }
-        if (strFirst === "XXX" || strLine === "XXX") return "X";
-        if (strFirst === "000" || strLine === "000") return "0";
+        if (strFirst === "XXX" || strLine === "XXX") {
+            return "X";
+        }
+        if (strFirst === "000" || strLine === "000") {
+            return "0";
+        }
 		
         if (
             position[i][i] === "X" ||
             position[position.length - i - 1][position.length - i - 1] === "X"
-        ) a += "X";
+        ) {
+            a += "X";
+        }
         if (
             position[i][i] === "0" ||
             position[position.length - i - 1][position.length - i - 1] === "0"
-        ) a += "0";
+        ) {
+            a += "0";
+        }
 		
-        if (position[position.length - i - 1][i] === "X") b += "X";
-        if (position[position.length - i - 1][i] === "0") b += "0";
+        if (position[position.length - i - 1][i] === "X") {
+            b += "X";
+        }
+        if (position[position.length - i - 1][i] === "0") {
+            b += "0";
+        }
     }
-    if (a === "XXX" || b === "XXX") return "X";
-    if (a === "000" || b === "000") return "0";
+    if (a === "XXX" || b === "XXX") {
+        return "X";
+    }
+    if (a === "000" || b === "000") {
+        return "0";
+    }
     return undefined;
 }
 
