@@ -156,8 +156,9 @@ class SuperElement{
         if (
             this.flagOrder[this.flagOrder.length - 1] > this.flagOrder[this.flagOrder.length - 2] &&
             this.flagRepeat[0]
-        ) this.str += strEl;
-        else if (this.flagOrder[this.flagOrder.length - 1] < this.flagOrder[this.flagOrder.length - 2]) {
+        ) {
+            this.str += strEl;
+        } else if (this.flagOrder[this.flagOrder.length - 1] < this.flagOrder[this.flagOrder.length - 2]) {
             throw new Error (
                 'Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element'
             );
@@ -170,8 +171,9 @@ class SuperElement{
         if (
             this.flagOrder[this.flagOrder.length - 1] > this.flagOrder[this.flagOrder.length - 2] &&
             this.flagRepeat[1]
-        ) this.str += "#"+strId;
-        else if (this.flagOrder[this.flagOrder.length - 1] < this.flagOrder[this.flagOrder.length - 2]) {
+        ) {
+            this.str += "#"+strId;
+        } else if (this.flagOrder[this.flagOrder.length - 1] < this.flagOrder[this.flagOrder.length - 2]) {
             throw new Error (
                 'Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element'
             );
@@ -210,8 +212,9 @@ class SuperElement{
     }
     pseudoElement(strPE) {
         this.flagOrder += "6";
-        if (this.flagRepeat[2]) this.str += `::${strPE}`;
-        else if (this.flagOrder[this.flagOrder.length - 1] < this.flagOrder[this.flagOrder.length - 2]) {
+        if (this.flagRepeat[2]) {
+            this.str += `::${strPE}`;
+        } else if (this.flagOrder[this.flagOrder.length - 1] < this.flagOrder[this.flagOrder.length - 2]) {
             throw new Error (
                 'Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element'
             );
