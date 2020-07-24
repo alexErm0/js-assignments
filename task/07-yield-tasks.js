@@ -168,11 +168,19 @@ function* mergeSortedSequences(source1, source2) {
     let mass2 = start2.next();
     while (!mass1.done || !mass2.done) {
         if (mass1.value > mass2.value) {
-            if (mass2.value !== undefined) yield mass2.value;
-            if (mass1.value !== undefined) yield mass1.value;
+            if (mass2.value !== undefined) {
+                yield mass2.value;
+            }
+            if (mass1.value !== undefined) {
+                yield mass1.value;
+            }
         } else {
-            if (mass1.value !== undefined) yield mass1.value;
-            if (mass2.value !== undefined) yield mass2.value;
+            if (mass1.value !== undefined) {
+                yield mass1.value;
+            }
+            if (mass2.value !== undefined) {
+                yield mass2.value;
+            }
         }
         mass1 = start1.next();
         mass2 = start2.next();
