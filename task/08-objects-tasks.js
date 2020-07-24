@@ -137,7 +137,7 @@ const cssSelectorBuilder = {
     },
     combine: function (selector1, combinator, selector2) {
         let current = new SuperElement();
-        current.setValue(selector1.stringify() + " " + combinator + " " + selector2.stringify());
+        current.setValue( selector1.stringify() + " " + combinator + " " + selector2.stringify() );
         return current;
     },
 };
@@ -162,7 +162,9 @@ class SuperElement{
             throw new Error (
                 'Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element'
             );
-        } else throw new Error ('Element, id and pseudo-element should not occur more then one time inside the selector');
+        } else {
+            throw new Error ('Element, id and pseudo-element should not occur more then one time inside the selector');
+        }
         this.flagRepeat[0] = false;
         return this;
     }
@@ -177,9 +179,11 @@ class SuperElement{
             throw new Error (
                 'Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element'
             );
-        } else throw new Error (
-            'Element, id and pseudo-element should not occur more then one time inside the selector'
-        );
+        } else {
+            throw new Error (
+                'Element, id and pseudo-element should not occur more then one time inside the selector'
+            );
+        }
         this.flagRepeat[1] = false;
         return this;
     }
@@ -187,27 +191,33 @@ class SuperElement{
         this.flagOrder += "3";
         if (this.flagOrder[this.flagOrder.length - 1] >= this.flagOrder[this.flagOrder.length - 2]) {
             this.str += `.${strCl}`;
-        } else throw new Error (
-            'Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element'
-        );
+        } else {
+            throw new Error (
+                'Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element'
+            );
+        }
         return this;
     }
     attr(strAt) {
         this.flagOrder += "4";
         if (this.flagOrder[this.flagOrder.length - 1] >= this.flagOrder[this.flagOrder.length - 2]) {
             this.str += `[${strAt}]`;
-        } else throw new Error (
-            'Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element'
-        );
+        } else {
+            throw new Error (
+                'Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element'
+            );
+        }
         return this;
     }
     pseudoClass(strPC) {
         this.flagOrder += "5";
         if (this.flagOrder[this.flagOrder.length - 1] >= this.flagOrder[this.flagOrder.length - 2]) {
             this.str += `:${strPC}`;
-        } else throw new Error (
-            'Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element'
-        );
+        } else {
+            throw new Error (
+                'Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element'
+            );
+        }
         return this;
     }
     pseudoElement(strPE) {
@@ -218,9 +228,11 @@ class SuperElement{
             throw new Error (
                 'Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element'
             );
-        } else throw new Error (
-            'Element, id and pseudo-element should not occur more then one time inside the selector'
-        );
+        } else {
+            throw new Error (
+                'Element, id and pseudo-element should not occur more then one time inside the selector'
+            );
+        }
         this.flagRepeat[2] = false;
         return this;
     }
