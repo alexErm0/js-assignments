@@ -103,7 +103,9 @@ function* depthTraversalTree(root) {
         root = cash.pop();
         yield root;
         if (root.children) {
-            for (let i of root.children.reverse()) cash.push(i);			
+            for (let i of root.children.reverse()) {
+                cash.push(i);
+            }
         }
     }
 }
