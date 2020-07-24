@@ -213,7 +213,7 @@ function findFirstSingleChar(str) {
         for (let j = 0; j < str.length; j++) {
             if (str[j].includes(str[i])) {
                 sum++;
-	    }
+            }
         }
         if (sum === 1) {
             return str[i];
