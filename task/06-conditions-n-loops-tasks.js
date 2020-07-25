@@ -441,7 +441,7 @@ function isBracketsBalanced(str) {
                         return false;
                     }
                 }
-             }
+            }
         }
     }
     return ((sum[0] + sum[1] + sum[2] + sum[3]) === 0);
